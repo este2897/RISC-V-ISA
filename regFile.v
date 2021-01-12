@@ -19,27 +19,23 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module regFile(
+module regFile(A1,A2,A3,WD3,WE,CLK,RD1,RD2);
 
 		//INPUTS
-    input [4:0] A1,
-    input [4:0] A2,
-    input [4:0] A3,
-    input [31:0] WD3,
-    input WE,
-    input CLK,
+    input wire [4:0] A1, A2, A3;
+    input wire [31:0] WD3;
+    input wire WE, CLK;
 	 
 		//OUTPUTS
-    output wire [31:0] RD1,
-    output wire [31:0] RD2
-    );
+    output wire [31:0] RD1, RD2;
+
 	 
 	 reg[31:0] RF [31:0]; // REG FILE 32x32
 	 assign RD1 = RF[A1]; // OUTPUT ASSIGN 1
 	 assign RD2 = RF[A2]; // OUTPUT ASSIGN 2
 	 
-//	 initial 
-//	 $readmemb("archivobinario.mem",RF); // VALORES INICIALES
+	 initial 
+	 $readmemb("/home/ise/PROYECTO/Verilog/memreg.mem",RF); // VALORES INICIALES
 	 
 	 always begin
 	 
