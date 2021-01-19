@@ -5,11 +5,11 @@
 //
 // Create Date:    22:35:28 01/08/2021
 // Design Name:
-// Module Name:    IMM_Gen
+// Module Name:    ALU
 // Project Name: RISC-V-ISA
 // Target Devices:
 // Tool versions:
-// Description: Extensión y orden del inmediato
+// Description: Realizar operaciones de la alu segun señal de control
 //
 // Dependencies:
 //
