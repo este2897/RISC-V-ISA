@@ -27,7 +27,7 @@ module UC(
 
  output reg  [1:0] ALUOp, //señal para alu control
  output reg  [2:0] ImmSel //para generador de inmediato
- output reg branch, jump, jumplink, memtoreg, MemW, ALUsrc, RegW, ImmSel
+ output reg branch, jump, jumplink, memtoreg, MemW, ALUsrc, RegW, ImmSel, LUItoReg
     );
 
 
