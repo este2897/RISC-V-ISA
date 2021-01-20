@@ -43,7 +43,7 @@ begin
      ALUsrc = 1'b1;
      RegW = 1'b1;
      ImmSel = 3'b000;
-     ALUOp = 2'b10;
+     LUItoReg = 1'b0;
      end
 
  6'b0000 0011: begin // 3 (tipo I load)
@@ -55,7 +55,7 @@ begin
      ALUsrc = 1'b1;
      RegW = 1'b1;
      ImmSel = 3'b000;
-     ALUOp = 2'b00;
+     LUItoReg = 1'b0;
     end
 
  6'b0011 0011: begin // 51 (tipo R)
@@ -67,7 +67,7 @@ begin
      ALUsrc = 1'b0;
      RegW = 1'b1;
      ImmSel = 3'b000;
-     ALUOp = 2'b10;
+     LUItoReg = 1'b0;
      end
 
  6'b0110 1111: begin // 111 (tipo J) jal
@@ -79,7 +79,7 @@ begin
      ALUsrc = 1'bx;
      RegW = 1'b01;
      ImmSel = 3'b100;
-     ALUOp = 2'bxx;
+     LUItoReg = 1'b0;
      end
 
  6'b0010 0011: begin // 35 (tipo S)
@@ -91,7 +91,7 @@ begin
      ALUsrc = 1'b1;
      RegW = 1'b0;
      ImmSel = 3'b001;
-     ALUOp = 2'b00;
+     LUItoReg = 1'b0;
      end
 
  6'b0011 0111: begin // 55 (tipo U) lui
@@ -103,7 +103,7 @@ begin
      ALUsrc = 1'b1;
      RegW = 1'b1;
      ImmSel = 3'b011;
-     ALUOp = 2'b10;
+     LUItoReg = 1'b1;
      end
 
 
@@ -116,7 +116,7 @@ begin
      ALUsrc = 1'b0;
      RegW = 1'b0;
      ImmSel = 3'b010;
-     ALUOp = 2'b01;
+     LUItoReg = 1'b0;
      end
 
  endcase
