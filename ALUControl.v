@@ -19,13 +19,13 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module alu_control(
- input [6:0] Opcode;
- input [2:0] funct3,
- input [6:0] funct7,
+module ALUControl(
+  input [6:0] Opcode,
+	 input [2:0] funct3,
+	 input [6:0] funct7,
 
- output reg[2:0] ALU_Cnt
-  );
+	 output reg[2:0] ALU_Cnt
+	 );
 
  wire [16:0] ALUControlIn;
  assign ALUControlIn = {Opcode,funct3,funct7};
@@ -45,4 +45,5 @@ module alu_control(
    17'b1100011001xxxxxxx: ALU_Cnt=3'b001; //bne resta
    default: ALU_Cnt=3'b000;
   endcase
+  
 endmodule
