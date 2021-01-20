@@ -22,18 +22,15 @@
 
 module UC(
  input [5:0] opcode,
- input [2:0] funct3,
- input [5:0] funct7,
-
- output reg  [2:0] ImmSel //para generador de inmediato
- output reg branch, jump, jumplink, memtoreg, MemW, ALUsrc, RegW, LUItoReg
-    );
+ 
+ output reg  [2:0] ImmSel, //para generador de inmediato
+ output reg branch, jump, jumplink, memtoreg, MemW, ALUsrc, RegW, LUItoReg);
 
 
 always @(*)
 begin
  case(opcode)
- 6'b0001 0011:  begin  // 19 (tipo I)
+ 6'b00010011:  begin  // 19 (tipo I)
      branch = 1'b0;
      jump = 1'b0;
      jumplink = 1'b0;
@@ -45,7 +42,7 @@ begin
      LUItoReg = 1'b0;
      end
 
- 6'b0000 0011: begin // 3 (tipo I load)
+ 6'b00000011: begin // 3 (tipo I load)
      branch = 1'b0;
      jump = 1'b0;
      jumplink = 1'b0;
@@ -57,7 +54,7 @@ begin
      LUItoReg = 1'b0;
     end
 
- 6'b0011 0011: begin // 51 (tipo R)
+ 6'b00110011: begin // 51 (tipo R)
      branch = 1'b0;
      jump = 1'b0;
      jumplink = 1'b0;
@@ -69,7 +66,7 @@ begin
      LUItoReg = 1'b0;
      end
 
- 6'b0110 1111: begin // 111 (tipo J) jal
+ 6'b01101111: begin // 111 (tipo J) jal
      branch = 1'b0;
      jump = 1'b1;
      jumplink = 1'b1;
@@ -81,7 +78,7 @@ begin
      LUItoReg = 1'b0;
      end
 
- 6'b0010 0011: begin // 35 (tipo S)
+ 6'b00100011: begin // 35 (tipo S)
      branch = 1'b0;
      jump = 1'b0;
      jumplink = 1'b0;
@@ -93,7 +90,7 @@ begin
      LUItoReg = 1'b0;
      end
 
- 6'b0011 0111: begin // 55 (tipo U) lui
+ 6'b00110111: begin // 55 (tipo U) lui
      branch = 1'b0;
      jump = 1'b0;
      jumplink = 1'b0;
@@ -106,7 +103,7 @@ begin
      end
 
 
- 6'b0110 0011: begin // 99 (tipo B) bne
+ 6'b01100011: begin // 99 (tipo B) bne
      branch = 1'b1;
      jump = 1'b0;
      jumplink = 1'b0;
