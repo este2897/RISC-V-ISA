@@ -20,11 +20,11 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ALU(
- input  [31:0] a,  //src1
- input  [31:0] b,  //src2
+ input signed [31:0] a,  //src1
+ input  [31:0] b,        //src2
  input  [2:0] alu_control, //function sel
 
- output reg [31:0] result,  //result
+ output reg signed [31:0] result,  //result
  output zero
     );
 
