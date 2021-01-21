@@ -32,11 +32,11 @@ module InstrMemory(
 	 
 //CARGA VALORES INICIALES 
 	initial
-		$readmemb("/home/ise/PROYECTO/Verilog/IM_Function.mem", rom);
+		$readmemb("/home/ise/PROYECTO/Verilog/IM_BasicOps.mem", rom);
 	 
 		always @(negedge CLK)
 			begin
-		Instr = rom[Address/4]; //INSTRUCCION A LA CUAL APUNTA LA DIRECCION
+		Instr = rom[(Address>>>2)]; //INSTRUCCION A LA CUAL APUNTA LA DIRECCION
 			end
 			
 endmodule
