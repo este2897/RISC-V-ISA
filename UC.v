@@ -24,7 +24,7 @@ module UC(
  input [6:0] opcode,
  
  output reg  [2:0] ImmSel, //para generador de inmediato
- output reg branch, jump, jumplink, memtoreg, MemW, ALUsrc, RegW, LUItoReg);
+ output reg branch, jump, jumplink, memtoreg, MemW, ALUsrc, RegW, LUItoReg); //multiplexores
 
 
 always @(*)
