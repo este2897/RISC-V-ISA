@@ -21,14 +21,15 @@
 module TOP_Processor(
 		
 input CLK,
-input RST);
+input RST
+);
 
 	wire a, x, y;
 	wire b, c, d, e, f, g, h, i; //para control
 	wire [2:0] aluC, imms; //para control
 	wire [4:0] rs1, rs2;
 	wire [31:0] add, instr, ab, bc, cd, de, fe, fg, gh, hi, ij, jk, kl, lm;
-	
+		
 	PC_next PC_next(
 		.CLK(CLK),
 		.reset(RST),
@@ -80,7 +81,7 @@ input RST);
 	
 	MUXsrcALU MUXsrcALU(
 		.ALUsrc(g), //control
-		.rd2(fg),
+		.rd2(fg), 
 		.ImmGEN(hi),
 		.ALU2(fe)
 	);
@@ -93,40 +94,40 @@ input RST);
 	);
 	
 	ALU ALU(
-		.a(de),
-		.b(fe),
+		.a(de), //input from reg file RD1
+		.b(fe), //input from alu src mux
 		.alu_control(aluC), //ALU control 
-		.result(gh),
-		.zero(a)
+		.result(gh), //output result
+		.zero(a) //zero result flag
 	);
 	
 	MUXMemtoReg MUXMemtoReg(
 		.MemtoReg(e), //control
 		.out(cd),
 		.AD(gh),
-		.RD(ij)
+		.RD(ij) //input from RD, data memory
 	);
 	
 	MUX_JL MUX_JL(
-		.lm(kl),
-		.xt(cd),
+		.lm(kl), //input FROM PC+4
+		.xt(cd), //input
 		.JL(d), //control
-		.ok(bc)
+		.ok(bc) //output
 	);
 	
 	MUX_LUItoreg MUX_LUItoreg(
-		.xt(cd),
-		.to(ab),
-		.imms(hi),
+		.jls(bc), // input FROM MUX JL OUTPUT
+		.to(ab), //OUTPUT TO WD3 
+		.imms(hi), //input from imm generator
 		.LUItoReg(i) //control
 	);
 	
 	DataMemory DataMemory(
-		.CLK(CLK),
-		.Address(gh),
-		.WriteData(fg),
+		.CLK(CLK), 
+		.Address(gh), //input, direccion de memoria
+		.WriteData(fg), //input, dato a escribir
 		.MemW(f), //control
-		.ReadData(ij)
+		.ReadData(ij)  //output
 	);
 
 	regFile regFile(
@@ -136,8 +137,8 @@ input RST);
 		.A2(instr[24:20]),
 		.A3(instr[11:7]),
 		.WD3(ab),
-		.RD1(de),
-		.RD2(fg)
+		.RD1(de), //output
+		.RD2(fg) //output
 	);
 	
 	AND AND(
