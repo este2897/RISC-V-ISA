@@ -40,8 +40,7 @@ module regFile(A1,A2,A3,WD3,WE,CLK,RD1,RD2);
 	 
 	 always begin
 	 
-	 @(posedge CLK) if (WE) RF[A3]<= WD3; // ESCRITURA EN REGISTRO DE DESTINO
-	 RF[0] = 0; // x0 CABLEADO A 0
+	 @(posedge CLK) if (WE & (A3!=0)) RF[A3]<= WD3; // ESCRITURA EN REGISTRO DE DESTINO
 	 
 	 end
 	
