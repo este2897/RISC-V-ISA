@@ -15,7 +15,8 @@
 //
 // Revision: 
 // Revision 0.01 - File Created
-// Additional Comments: 
+// Additional Comments: archivo de registros, 32x32, riscv32 estandar
+// unidad de memoria rapida para realizar operaciones dentro del procesador
 //
 //////////////////////////////////////////////////////////////////////////////////
 
