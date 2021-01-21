@@ -21,16 +21,17 @@
 
 module MUXsrcALU(
 	// MUX 2:1 FOR ALU SOURCE
-    input [31:0] RD2, // REG 2 FROM REG FILE 
+    input [31:0] rd2, // REG 2 FROM REG FILE 
     input [31:0] ImmGEN, // IMMEDIATE 
 	 input ALUsrc, //FROM CU
     output reg [31:0] ALU2); //OUTPUT FOR ALU SOURCE 2
 	// CASE FOR MUX, 1->IMM, 0->RD2
-   always @ (RD2 or ImmGEN or ALUsrc) begin  
+   always @ (rd2 or ImmGEN or ALUsrc) begin  
       case (ALUsrc)  
-         1'b0 : ALU2 <= RD2;  
+         1'b0 : ALU2 <= rd2;  
          1'b1 : ALU2 <= ImmGEN;   
       endcase  
    end  
+endmodule
 
 endmodule
