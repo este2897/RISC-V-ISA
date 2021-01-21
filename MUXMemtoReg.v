@@ -21,11 +21,11 @@
 
 
 module MUXMemtoReg(
-	// MUX 2:1 FOR WD3 SOURCE
+	// MUX 2:1 FOR JL INPUT 0 SOURCE
     input [31:0] AD, // FROM ALU OUTPUT
     input [31:0] RD, // FROM DATA MEMORY OUTPUT
 	 input MemtoReg, // FROM CU
-    output reg [31:0] out); //OUTPUT TO REGISTER FILE
+    output reg [31:0] out); //OUTPUT TO JL MUX
 	 
 	 	// CASE FOR MUX, 1->RD, 0->AD
    always @ (RD or AD or MemtoReg) begin  
@@ -34,6 +34,4 @@ module MUXMemtoReg(
          1'b1 : out <= RD;   
       endcase  
    end 
-
-
 endmodule
