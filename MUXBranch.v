@@ -20,10 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 module MUXBranch(
 	// MUX 2:1 FOR JUMP SOURCE IN 0
-    input uno, // PC+4 
-    input cero, // PC+Imm 
+    input [31:0]uno, // PC+4 
+    input [31:0]cero, // PC+Imm 
 	 input br, //FROM OR JUMP/BRANCH
-    output reg j0); //OUTPUT FOR PC_NEXT
+    output reg [31:0] j0); //OUTPUT FOR PC_NEXT
 	// CASE FOR MUX, 1->uno, 0->cero
    always @ (uno or cero or br) begin  
       case (br)  
@@ -32,3 +32,4 @@ module MUXBranch(
       endcase  
    end 
 endmodule
+
