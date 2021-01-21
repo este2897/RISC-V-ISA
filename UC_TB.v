@@ -25,7 +25,7 @@
 module UC_TB;
 
 	// Inputs
-	reg [5:0] opcode;
+	reg [6:0] opcode;
 
 	// Outputs
 	wire [2:0] ImmSel;
@@ -60,19 +60,19 @@ module UC_TB;
 		#100;
         
 		// Add stimulus here
-		opcode = 19;
+		opcode = 7'd19;
 		
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-		opcode = 35;
+		opcode = 7'd35;
 		
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-		opcode = 111;
+		opcode = 7'd111;
 	end
       
 endmodule
