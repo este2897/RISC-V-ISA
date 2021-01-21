@@ -21,12 +21,12 @@
 
 module DataMemory( 
 //ENTRADAS
-    input [9:0] Address,
+    input [31:0] Address,
     input [31:0] WriteData,
     input MemW,
 	 input CLK,
 //SALIDA
-    output [31:0] ReadData
+    output reg [31:0] ReadData
     );
 	 
 	 parameter MEM_DEPTH = 1024;
@@ -34,16 +34,11 @@ module DataMemory(
 	 
 	 reg [SIZE-1:0] ram [MEM_DEPTH-1:0]; //INICIALIZACION DE MEMORIA
 	 
-//	 initial $readmemb //PARA CARGAR VALORES INICIALES
+	 initial	$readmemb("/home/ise/PROYECTO/Verilog/DataMem.mem", ram); //VALORES INICIALES
 
-	always begin
-	
-	@(posedge CLK) 
-		if (MemW) ram[Address]<= WriteData; //ESCRIBIR
-
-	ram[Address]<= ReadData; //LEER
-		
-	end
-
-
+		always @(posedge CLK)
+			begin 
+				if (MemW) ram[Address]<= WriteData; //ESCRIBIR
+			ReadData = ram[Address]; //LEER	
+			end
 endmodule
