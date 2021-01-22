@@ -22,9 +22,10 @@
 
 module UC(
  input [6:0] opcode,
+ input [2:0] funct3,
  
  output reg  [2:0] ImmSel, //para generador de inmediato
- output reg branch, jump, jumplink, memtoreg, MemW, ALUsrc, RegW, LUItoReg); //multiplexores
+ output reg branch, jump, jumplink, memtoreg, MemW, ALUsrc, RegW, LUItoReg, byte_cnt); //multiplexores
 
 
 always @(*)
@@ -40,6 +41,7 @@ begin
      RegW = 1'b1;
      ImmSel = 3'b000;
      LUItoReg = 1'b0;
+	  byte_cnt = 1'b0;
      end
 
  7'b0000011: begin // 3 (tipo I load)
@@ -52,6 +54,8 @@ begin
      RegW = 1'b1;
      ImmSel = 3'b000;
      LUItoReg = 1'b0;
+	  if (funct3 == 3'b100) byte_cnt = 1'b1;
+	  else byte_cnt = 1'b0;
     end
 
  7'b0110011: begin // 51 (tipo R)
@@ -64,6 +68,7 @@ begin
      RegW = 1'b1;
      ImmSel = 3'b000;
      LUItoReg = 1'b0;
+	  byte_cnt = 1'b0;
      end
 
  7'b1101111: begin // 111 (tipo J) jal
@@ -76,6 +81,7 @@ begin
      RegW = 1'b01;
      ImmSel = 3'b100;
      LUItoReg = 1'b0;
+	  byte_cnt = 1'b0;
      end
 
  7'b0100011: begin // 35 (tipo S)
@@ -88,6 +94,8 @@ begin
      RegW = 1'b0;
      ImmSel = 3'b001;
      LUItoReg = 1'b0;
+	  if (funct3 == 3'b000) byte_cnt = 1'b1;
+	  else byte_cnt = 1'b0;
      end
 
  7'b0110111: begin // 55 (tipo U) lui
@@ -100,6 +108,7 @@ begin
      RegW = 1'b1;
      ImmSel = 3'b011;
      LUItoReg = 1'b1;
+	  byte_cnt = 1'b0;
      end
 
 
