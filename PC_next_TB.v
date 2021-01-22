@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   15:29:19 01/22/2021
-// Design Name:   UC
-// Module Name:   D:/TEC/Microcontroladores/Proyecto/RISCV/UC_TB.v
+// Create Date:   13:45:09 01/22/2021
+// Design Name:   PC_next
+// Module Name:   D:/TEC/Microcontroladores/Proyecto/RISCV/PC_next_TB.v
 // Project Name:  RISCV
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: UC
+// Verilog Test Fixture created by ISE for module: PC_next
 //
 // Dependencies:
 // 
@@ -22,66 +22,54 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module UC_TB;
+module PC_next_TB;
 
 	// Inputs
-	reg [6:0] opcode;
-	reg [2:0] funct3;
+	reg CLK;
+	reg reset;
+	reg [31:0] pc_next;
 
 	// Outputs
-	wire [2:0] ImmSel;
-	wire branch;
-	wire jump;
-	wire jumplink;
-	wire memtoreg;
-	wire MemW;
-	wire ALUsrc;
-	wire RegW;
-	wire LUItoReg;
-	wire byte_cnt;
+	wire [31:0] pc_actual;
 
 	// Instantiate the Unit Under Test (UUT)
-	UC uut (
-		.opcode(opcode), 
-		.funct3(funct3), 
-		.ImmSel(ImmSel), 
-		.branch(branch), 
-		.jump(jump), 
-		.jumplink(jumplink), 
-		.memtoreg(memtoreg), 
-		.MemW(MemW), 
-		.ALUsrc(ALUsrc), 
-		.RegW(RegW), 
-		.LUItoReg(LUItoReg), 
-		.byte_cnt(byte_cnt)
+	PC_next uut (
+		.CLK(CLK), 
+		.reset(reset), 
+		.pc_next(pc_next), 
+		.pc_actual(pc_actual)
 	);
 
 	initial begin
 		// Initialize Inputs
-		opcode = 0;
-		funct3 = 0;
+		CLK = 0;
+		reset = 0;
+		pc_next = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-		opcode = 19;
-		funct3 = 0;
+		CLK = 1;
+		reset = 0;
+		pc_next = 1;
 		
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-		opcode = 19;
-		funct3 = 7;
+		CLK = 1;
+		reset = 0;
+		pc_next = 2;
+		
 		
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-		opcode = 51;
-		funct3 = 0;
-
+		CLK = 1;
+		reset = 0;
+		pc_next = 4;
 		
 	end
       
