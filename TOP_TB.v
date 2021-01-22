@@ -28,6 +28,8 @@ module TOP_TB;
 	reg CLK;
 	reg RST;
 
+integer i, dumpfile;
+
 	// Instantiate the Unit Under Test (UUT)
 	TOP_Processor uut (
 		.CLK(CLK), 
@@ -199,13 +201,18 @@ module TOP_TB;
 		// Initialize Inputs
 		CLK = 1;
 		RST = 0;
-
-		// Wait 100 ns for global reset to finish
-		#10;
         
 		// Add stimulus here
-
+		#300;
+        dumpfile = $fopen("dump_file.hex","w");
+        for (i=0;i<1024;i=i+1)
+        begin
+            $fwrite(dumpfile,"%b\n",uut.DataMemory.ReadData[i]);
+        end
 	end
       
 endmodule
+
+
+
 
