@@ -25,7 +25,7 @@ module MUX_JL(
     input [31:0] xt, // FROM MUX MEMTOREG OUTPUT
     input [31:0] lm, // FROM PC+4
 	 input JL, // FROM CU
-    output reg [31:0] ok); //OUTPUT TO REGISTER FILE WD3
+	output reg [31:0] ok); //OUTPUT TO LUItoreg MUX
 	 
 	 	// CASE FOR MUX, 1->lm, 0->xt
    always @ (xt or lm or JL) begin  
