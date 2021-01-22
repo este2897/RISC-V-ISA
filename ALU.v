@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ALU(
- input signed [31:0] a,  //src1, con signo para el shift aritmetico
- input  [31:0] b,  //src2
+ input signed [31:0] a,  //src1, con signo
+ input signed [31:0] b,  //src2, con signo
  input  [2:0] alu_control, //selecciona operación
 
  output reg signed [31:0] result,  //resultado, con signo para el shift aritmetico
