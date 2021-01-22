@@ -42,6 +42,8 @@ module regFile(A1,A2,A3,WD3,WE,CLK,RD1,RD2);
 	 
 	 @(posedge CLK) if (WE & (A3!=0)) RF[A3]<= WD3; // ESCRITURA EN REGISTRO DE DESTINO
 	 
+	//Se inhabilita la escritura en RF[0]
+		 
 	 end
 	
 
